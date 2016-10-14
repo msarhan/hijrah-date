@@ -1,6 +1,6 @@
 {
   "name": "hijrah-date",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A date in the Hijrah calendar system",
   "main": "hijrah-date.js",
   "keywords": "date, hijrah, hijri, calendar, islamic",
@@ -10,6 +10,12 @@
     "type": "git",
     "url": "git://github.com/msarhan/hijrah-date.git"
   },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "src"
+  ],
   "devDependencies": {
     "angular": "^1.5.8",
     "angular-mocks": "^1.5.8",
