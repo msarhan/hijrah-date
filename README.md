@@ -1,4 +1,4 @@
-# hijrah-date
+# HijrahDate [![Build Status](https://travis-ci.org/msarhan/hijrah-date.svg?branch=master)](https://travis-ci.org/msarhan/hijrah-date)
 Javascript date in the Hijrah calendar system.
 
 
@@ -95,6 +95,8 @@ var hijrahDate = new HijrahDate(date);
 `HijrahDate::format(format[, localeId])`
 
 Formats `HijrahDate` to a string based on the requested format. Formats ported from [AngularJS' date filter](https://docs.angularjs.org/api/ng/filter/date).
+
+`localeId` string 'en' or 'ar'
 
 `format` string can be composed of the following elements:
 * 'yyyy': 4 digit representation of year (e.g. 1437)

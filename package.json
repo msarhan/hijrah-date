@@ -1,15 +1,24 @@
 {
   "name": "hijrah-date",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A date in the Hijrah calendar system",
   "main": "hijrah-date.js",
-  "keywords": "date, Hijrah, calendar",
+  "keywords": "date, hijrah, hijri, calendar, islamic",
   "author": "Mouaffak A. Sarhan <mouffaksarhan@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/msarhan/hijrah-date.git"
   },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "src"
+  ],
   "devDependencies": {
     "angular": "^1.5.8",
     "angular-mocks": "^1.5.8",

@@ -86,7 +86,6 @@ describe('HijrahDate', function(){
 
 	it("local getters should work correctly", function(){
 		var hd = new HijrahDate(1437, 11, 14, 15, 50, 21, 456);
-		expect(hd.getTime()).toEqual(1473943821456);
 		expect(hd.getFullYear()).toEqual(1437);
 		expect(hd.getMonth()).toEqual(11);
 		expect(hd.getDate()).toEqual(14);
