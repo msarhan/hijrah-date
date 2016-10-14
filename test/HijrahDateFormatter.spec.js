@@ -15,12 +15,15 @@ describe('hijrah date formatter', function() {
 		return hijrahDate.format(format);
 	}
 
-	var morning    = new angular.mock.TzDate(+5, '2010-09-03T12:05:08.001Z'); //7am
-	var noon       = new angular.mock.TzDate(+5, '2010-09-03T17:05:08.012Z'); //12pm
-	var midnight   = new angular.mock.TzDate(+5, '2010-09-03T05:05:08.123Z'); //12am
-	var earlyDate  = new angular.mock.TzDate(+5, '1885-12-14T05:05:08.000Z');
-	var year0Date  = new angular.mock.TzDate(+5, '1882-11-12T05:05:08.000Z');
-	var secondWeek = new angular.mock.TzDate(+5, '2013-01-11T12:00:00.000Z'); //Friday Jan 11, 2013
+	Date = TimeShift.Date;
+	TimeShift.setTimezoneOffset(5 * 60);
+
+	var morning    = new Date('2010-09-03T12:05:08.001Z'); //7am
+	var noon       = new Date('2010-09-03T17:05:08.012Z'); //12pm
+	var midnight   = new Date('2010-09-03T05:05:08.123Z'); //12am
+	var earlyDate  = new Date('1885-12-14T05:05:08.000Z');
+	var year0Date  = new Date('1882-11-12T05:05:08.000Z');
+	var secondWeek = new Date('2013-01-11T12:00:00.000Z'); //Friday Jan 11, 2013
 	var date;
 
 	morning = new HijrahDate(morning);
@@ -99,26 +102,33 @@ describe('hijrah date formatter', function() {
 
     it('should format timezones correctly (as per ISO_8601)', function() {
       //Note: TzDate's first argument is offset, _not_ timezone.
-      var utc       = new HijrahDate(new angular.mock.TzDate(0, '2010-09-03T12:05:08.000Z'));
-      var eastOfUTC = new HijrahDate(new angular.mock.TzDate(-5, '2010-09-03T12:05:08.000Z'));
-      var westOfUTC = new HijrahDate(new angular.mock.TzDate(+5, '2010-09-03T12:05:08.000Z'));
-      var eastOfUTCPartial = new HijrahDate(new angular.mock.TzDate(-5.5, '2010-09-03T12:05:08.000Z'));
-      var westOfUTCPartial = new HijrahDate(new angular.mock.TzDate(+5.5, '2010-09-03T12:05:08.000Z'));
+      var utc       = new HijrahDate(new Date('2010-09-03T12:05:08.000Z'));
+      var eastOfUTC = new HijrahDate(new Date('2010-09-03T12:05:08.000Z'));
+      var westOfUTC = new HijrahDate(new Date('2010-09-03T12:05:08.000Z'));
+      var eastOfUTCPartial = new HijrahDate(new Date('2010-09-03T12:05:08.000Z'));
+      var westOfUTCPartial = new HijrahDate(new Date('2010-09-03T12:05:08.000Z'));
 
+	  TimeShift.setTimezoneOffset(0);
       expect(filter(utc, 'yyyy-MM-ddTHH:mm:ssZ')).
                     toEqual('1431-09-24T12:05:08+0000');
 
+	  TimeShift.setTimezoneOffset(-5 * 60);
       expect(filter(eastOfUTC, 'yyyy-MM-ddTHH:mm:ssZ')).
                     toEqual('1431-09-24T17:05:08+0500');
 
+	  TimeShift.setTimezoneOffset(5 * 60);
       expect(filter(westOfUTC, 'yyyy-MM-ddTHH:mm:ssZ')).
                     toEqual('1431-09-24T07:05:08-0500');
 
+	  TimeShift.setTimezoneOffset(-5.5 * 60);
       expect(filter(eastOfUTCPartial, 'yyyy-MM-ddTHH:mm:ssZ')).
                     toEqual('1431-09-24T17:35:08+0530');
 
+	  TimeShift.setTimezoneOffset(5.5 * 60);
       expect(filter(westOfUTCPartial, 'yyyy-MM-ddTHH:mm:ssZ')).
                     toEqual('1431-09-24T06:35:08-0530');
+
+		TimeShift.setTime(undefined);
     });
 
     it('should correctly calculate week number', function() {

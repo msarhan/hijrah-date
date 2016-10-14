@@ -1095,7 +1095,7 @@ function HijrahDate(year, monthOfYear, dayOfMonth, hours, minutes, seconds, mill
 			m = hd._monthOfYear;
 			d = hd._dayOfMonth;
 		} else {
-			g = isDate(arguments[0]) ? arguments[0] : new Date(arguments[0]);
+			g = new Date(arguments[0]);
 			var dateInfo = getHijrahDateInfo(epochDayFromGregorain(g));
 			y = dateInfo[0];
 			m = dateInfo[1];
@@ -1306,7 +1306,7 @@ function minusDays(daysToSubtract) {
 }
 
 function toGregorian(){
-	return this._gregorianDate;
+	return new Date(this._gregorianDate);
 }
 
 function format(format, localeId){

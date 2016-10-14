@@ -15,20 +15,13 @@ describe('HijrahDate', function(){
 		});
 
 		describe("with no arguments", function(){
-			beforeEach(function() {
-				jasmine.clock().install();
-			});
-
-			afterEach(function() {
-				jasmine.clock().uninstall();
-			});
-
 			it("should have an active date equal to the current date", function(){
-				var gd = new Date(2016, 0, 1);
-				jasmine.clock().mockDate(gd);
-
+				Date = TimeShift.Date;
+				TimeShift.setTime(1451624400000); // 2016-01-01
+				var gd = new Date();
 				var hd = new HijrahDate();
 				expect(hd.getTime()).toEqual(gd.getTime());
+				TimeShift.setTime(undefined);
 			});
 		});
 
