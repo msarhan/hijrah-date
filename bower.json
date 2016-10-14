@@ -1,6 +1,6 @@
 {
   "name": "hijrah-date",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A date in the Hijrah calendar system",
   "main": "hijrah-date.js",
   "keywords": "date, hijrah, hijri, calendar, islamic",
